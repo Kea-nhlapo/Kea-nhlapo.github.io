@@ -63,8 +63,7 @@ function splitHeroHeading() {
 
 function animateHero(createTimeline, stagger, heroWords) {
   createTimeline({ defaults: { ease: "out(3)" } })
-    .add(".hero-status", { opacity: [0, 1], y: [12, 0], duration: 420 })
-    .add(heroWords, { opacity: [0, 1], y: ["110%", "0%"], duration: 680, delay: stagger(48) }, "-=180")
+    .add(heroWords, { opacity: [0, 1], y: ["110%", "0%"], duration: 680, delay: stagger(48) })
     .add(".hero-intro", { opacity: [0, 1], y: [16, 0], duration: 480 }, "-=360")
     .add(".hero-actions > *", { opacity: [0, 1], y: [12, 0], duration: 380, delay: stagger(70) }, "-=330")
     .add(".hero-system", { opacity: [0, 1], x: [24, 0], duration: 560 }, "-=420")
@@ -89,7 +88,7 @@ function observeProjects(createTimeline, stagger) {
 
 function animateProject(project, createTimeline, stagger) {
   const content = project.querySelectorAll(
-    ".project-number, .project-labels > span, .project-main h3, .project-lead, .project-detail, .decision-grid > div, .stack > li, .project-actions > a"
+    ".project-number, .project-main h3, .project-lead, .project-detail, .decision-grid > div, .stack > li, .project-actions > a"
   );
   const timeline = createTimeline({ defaults: { ease: "out(3)" } })
     .add(content, { opacity: [0, 1], y: [18, 0], duration: 430, delay: stagger(34) })
@@ -99,8 +98,7 @@ function animateProject(project, createTimeline, stagger) {
     timeline
       .add(project.querySelectorAll(".flow-node"), { opacity: [0, 1], scaleX: [0.76, 1], duration: 380, delay: stagger(130) }, "-=260")
       .add(project.querySelector(".flow-line"), { opacity: [0, 1], scaleY: [0, 1], duration: 280 }, "-=270")
-      .add(project.querySelectorAll(".flow-branches > div"), { opacity: [0, 1], y: [14, 0], duration: 320, delay: stagger(90) }, "-=120")
-      .add(project.querySelector(".flow-result"), { opacity: [0, 1], duration: 300 }, "-=80");
+      .add(project.querySelectorAll(".flow-branches > div"), { opacity: [0, 1], y: [14, 0], duration: 320, delay: stagger(90) }, "-=120");
   }
   if (project.querySelector(".wattwise-visual")) {
     timeline

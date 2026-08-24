@@ -27,7 +27,6 @@
 
   <main id="main">
     <section class="hero shell" id="top" aria-labelledby="hero-title">
-      <div class="hero-status reveal"><span class="status-dot" aria-hidden="true"></span><span>Johannesburg, South Africa</span><span aria-hidden="true">/</span><span>Backend engineering</span></div>
       <div class="hero-grid">
         <div class="hero-copy reveal">
           <p class="eyebrow">Kea Nhlapo / Software Engineer</p>
@@ -59,7 +58,6 @@
       <article class="project reveal">
         <div class="project-number" aria-hidden="true">01</div>
         <div class="project-main">
-          <div class="project-labels"><span>Industrial operations</span><span>Full-stack system</span></div>
           <h3>Mint Uptime Exchange</h3>
           <p class="project-lead">Turns machinery risk into an approved, scheduled repair before production stops.</p>
           <p class="project-detail">The backend calculates the financial case, records separate approvals, reserves stock transactionally, matches technicians, and persists a 14-step repair workflow. Server-Sent Events push state changes back to the interface.</p>
@@ -73,14 +71,12 @@
         <div class="project-visual mint-visual" role="img" aria-label="A machine signal enters a risk API, which coordinates approvals, inventory, and a work order">
           <div class="flow-node flow-source"><span>01</span>Machine signal</div><div class="flow-line"></div><div class="flow-node flow-core"><span>02</span>Risk API</div>
           <div class="flow-branches"><div><span>APPROVAL</span><strong>OPS + FINANCE</strong></div><div><span>INVENTORY</span><strong>RESERVED</strong></div><div><span>WORK ORDER</span><strong>SCHEDULED</strong></div></div>
-          <div class="flow-result"><span class="pulse"></span>Workflow state streamed live</div>
         </div>
       </article>
 
       <article class="project reveal">
         <div class="project-number" aria-hidden="true">02</div>
         <div class="project-main">
-          <div class="project-labels"><span>Civic technology</span><span>Hardware to cloud</span></div>
           <h3>WattWise</h3>
           <p class="project-lead">Electricity monitoring that connects household usage, municipal faults, and technician dispatch.</p>
           <p class="project-detail">Arduino readings pass through a Python bridge into a FastAPI service and PostgreSQL. The API serves separate workflows for residents, municipal teams, and field technicians, while the frontend can fall back to mock data when hardware is unavailable.</p>
@@ -100,7 +96,6 @@
       <article class="project reveal">
         <div class="project-number" aria-hidden="true">03</div>
         <div class="project-main">
-          <div class="project-labels"><span>Public infrastructure</span><span>Multimodal AI</span></div>
           <h3>CivicLens AI</h3>
           <p class="project-lead">Turns a photo of a public infrastructure problem into a municipal report draft.</p>
           <p class="project-detail">A FastAPI endpoint validates the image and context, sends them to Gemini, and requires structured output that matches a Pydantic response model. Invalid model output, missing credentials, and network failures fall back to labelled demo data.</p>
@@ -113,7 +108,7 @@
         </div>
         <div class="project-visual civic-visual" role="img" aria-label="A road damage photo classified as high severity and routed to a roads department">
           <div class="report-photo"><span class="scan-line" aria-hidden="true"></span><span class="photo-label">IMAGE_024.JPG</span><div class="road" aria-hidden="true"><i></i></div></div>
-          <div class="report-output"><div><span>CLASS</span><strong>ROAD DAMAGE</strong></div><div><span>SEVERITY</span><strong>HIGH</strong></div><div><span>ROUTE</span><strong>ROADS DEPT.</strong></div><div class="output-ready"><i></i>Draft ready for review</div></div>
+          <div class="report-output"><div><span>CLASS</span><strong>ROAD DAMAGE</strong></div><div><span>SEVERITY</span><strong>HIGH</strong></div><div><span>ROUTE</span><strong>ROADS DEPT.</strong></div></div>
         </div>
       </article>
     </section>
