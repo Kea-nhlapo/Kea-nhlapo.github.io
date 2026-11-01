@@ -4,155 +4,212 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Kea Nhlapo is a backend engineer building APIs, cloud services, and data-driven systems in Johannesburg, South Africa.">
-  <meta name="theme-color" content="#f2f0e9">
+  <meta name="theme-color" content="#f9fafc">
   <title>Kea Nhlapo | Backend Engineer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600&amp;family=IBM+Plex+Sans:wght@400;500&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="port.css">
   <script src="port.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
-    <nav class="nav shell" aria-label="Primary navigation">
-      <a class="wordmark" href="#top" aria-label="Kea Nhlapo, back to top">KN<span>/</span>BACKEND</a>
+    <nav class="nav container" aria-label="Primary navigation">
+      <a class="wordmark" href="#top" aria-label="Kea Nhlapo, back to top">Kea Nhlapo</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-links"><span>Menu</span><span class="menu-mark" aria-hidden="true"></span></button>
       <div class="nav-links" id="nav-links">
-        <a href="#work">Work</a><a href="#experience">Experience</a><a href="#about">About</a><a href="#contact">Contact</a>
-        <a class="nav-external" href="https://github.com/Kea-nhlapo" target="_blank" rel="noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+        <a href="#work">Work</a><a href="#experience">Experience</a><a href="#about">About</a>
+        <a class="nav-external" href="https://github.com/Kea-nhlapo" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="key key--small" href="#contact">Contact</a>
       </div>
     </nav>
   </header>
 
   <main id="main">
-    <section class="hero shell" id="top" aria-labelledby="hero-title">
-      <div class="hero-grid">
-        <div class="hero-copy reveal">
-          <p class="eyebrow">Kea Nhlapo / Software Engineer</p>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
           <h1 id="hero-title">I build the systems behind the screen.</h1>
-          <p class="hero-intro">APIs, data models, authentication, workflows, and cloud services for products that need more than a polished interface.</p>
+          <p class="lead">APIs, data models, authentication, workflows and cloud services, for products that need more than a polished interface.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#work">See selected work <span aria-hidden="true">↓</span></a>
-            <a class="button button-text" href="https://www.linkedin.com/in/kea-nhlapo-9a4a49261" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+            <a class="key key--primary" href="#work">See selected work</a>
+            <a class="key" href="https://www.linkedin.com/in/kea-nhlapo-9a4a49261" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
         </div>
-        <aside class="hero-system reveal" aria-label="Current backend focus">
-          <div class="system-head"><span>BACKEND_PROFILE.JSON</span><span class="system-live">ACTIVE</span></div>
-          <dl class="system-list">
-            <div><dt>focus</dt><dd>API design</dd></div><div><dt>runtime</dt><dd>Java / Python / Node.js</dd></div>
-            <div><dt>data</dt><dd>PostgreSQL / SQL</dd></div><div><dt>delivery</dt><dd>Azure / Cloud Run / CI</dd></div>
-            <div><dt>method</dt><dd>Test, observe, improve</dd></div>
-          </dl>
+        <figure class="hero-stage" aria-labelledby="profile-caption">
+          <canvas class="field" aria-hidden="true"></canvas>
+          <div class="graphite profile cut">
+            <div class="pane-head"><span id="profile-caption">backend_profile.json</span></div>
+<pre class="code"><code>{
+  <span class="k">"focus"</span>: <span class="s">"API design"</span>,
+  <span class="k">"runtime"</span>: [<span class="s">"Java"</span>, <span class="s">"Python"</span>, <span class="s">"Node.js"</span>],
+  <span class="k">"data"</span>: [<span class="s">"PostgreSQL"</span>, <span class="s">"SQL"</span>],
+  <span class="k">"delivery"</span>: [<span class="s">"Azure"</span>, <span class="s">"Cloud Run"</span>, <span class="s">"CI"</span>],
+  <span class="k">"method"</span>: <span class="s">"Test, observe, improve"</span>
+}</code></pre>
+          </div>
+        </figure>
+      </div>
+    </section>
+
+    <section class="work section" id="work" aria-labelledby="work-title">
+      <div class="container">
+        <div class="head-split">
+          <h2 id="work-title">Work that shows how I think.</h2>
+          <p class="lead">Three hackathon builds, viewed from the backend: where data enters, how decisions are made, and what happens when a dependency fails.</p>
+        </div>
+
+        <article class="project project--split">
+          <div class="project-main">
+            <h3>Mint Uptime Exchange</h3>
+            <p class="project-lead">Turns machinery risk into an approved, scheduled repair before production stops.</p>
+            <p>The backend calculates the financial case, records separate approvals, reserves stock transactionally, matches technicians, and persists a 14-step repair workflow. Server-Sent Events push state changes back to the interface.</p>
+            <dl class="decisions">
+              <div><dt>Data</dt><dd>PostgreSQL is the source of truth for machines, alerts, approvals, inventory, work orders, and audit history.</dd></div>
+              <div><dt>Control</dt><dd>JWT authentication and database-loaded permissions enforce role boundaries on every request.</dd></div>
+            </dl>
+            <ul class="stack" aria-label="Mint Uptime Exchange technologies"><li>TypeScript</li><li>Express</li><li>Prisma</li><li>PostgreSQL</li><li>SSE</li><li>Vitest</li></ul>
+            <div class="project-actions"><a href="https://kea-nhlapo.github.io/mint-uptime-guarantee/" target="_blank" rel="noreferrer">Live frontend</a><a href="https://github.com/Kea-nhlapo/mint-uptime-guarantee" target="_blank" rel="noreferrer">Source code</a></div>
+          </div>
+          <figure class="diagram graphite cut" role="img" aria-label="Diagram: a machine signal enters a risk API, which coordinates approvals, inventory, and a work order">
+            <ol class="flow">
+              <li><span class="flow-step">machine signal</span><span class="flow-note">a risk alert arrives</span></li>
+              <li class="flow-core"><span class="flow-step">risk API</span><span class="flow-note">builds the financial case</span></li>
+            </ol>
+            <ul class="branches">
+              <li><span>approval</span><strong>ops + finance</strong></li>
+              <li><span>inventory</span><strong>reserved</strong></li>
+              <li><span>work order</span><strong>scheduled</strong></li>
+            </ul>
+          </figure>
+        </article>
+
+        <article class="project project--wide">
+          <div class="project-head">
+            <h3>WattWise</h3>
+            <p class="project-lead">Electricity monitoring that connects household usage, municipal faults, and technician dispatch.</p>
+          </div>
+          <figure class="pipeline-figure cut" role="img" aria-label="Diagram: a data pipeline from Arduino to a Python bridge, a FastAPI service and PostgreSQL">
+            <ol class="pipeline">
+              <li><strong>Arduino</strong><span>meter reading</span></li>
+              <li><strong>Python</strong><span>serial bridge</span></li>
+              <li><strong>FastAPI</strong><span>validation + routes</span></li>
+              <li><strong>Postgres</strong><span>usage + alerts</span></li>
+            </ol>
+            <p class="reading"><span class="reading-figure">2.84 <small>kW</small></span><span class="reading-label">sample live draw</span></p>
+          </figure>
+          <div class="project-body">
+            <p>Arduino readings pass through a Python bridge into a FastAPI service and PostgreSQL. The API serves separate workflows for residents, municipal teams, and field technicians, while the frontend can fall back to mock data when hardware is unavailable.</p>
+            <dl class="decisions">
+              <div><dt>Pipeline</dt><dd>A small bridge isolates serial hardware input from the web API and forwards readings over HTTP.</dd></div>
+              <div><dt>Access</dt><dd>The system includes a USSD-style flow so core reporting does not depend on a smartphone.</dd></div>
+            </dl>
+            <div class="project-foot">
+              <ul class="stack" aria-label="WattWise technologies"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Arduino</li><li>React</li><li>TypeScript</li></ul>
+              <div class="project-actions"><a href="https://github.com/wattwiseg13/wattwise" target="_blank" rel="noreferrer">Source code</a></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="project project--split project--flip">
+          <figure class="mapping" role="img" aria-label="Diagram: a road damage photo goes in, and a structured report comes out classified as high severity and routed to a roads department">
+            <div class="graphite cut pane">
+              <div class="pane-head"><span>request</span></div>
+              <dl class="pane-rows"><div><dt>image</dt><dd>image_024.jpg</dd></div><div><dt>model</dt><dd>Gemini</dd></div><div><dt>schema</dt><dd>Pydantic</dd></div></dl>
+            </div>
+            <div class="mapping-joint" aria-hidden="true"></div>
+            <div class="graphite cut pane">
+              <div class="pane-head"><span>report draft</span></div>
+              <dl class="pane-rows"><div><dt>class</dt><dd>road damage</dd></div><div><dt>severity</dt><dd>high</dd></div><div><dt>route</dt><dd>roads dept.</dd></div></dl>
+            </div>
+          </figure>
+          <div class="project-main">
+            <h3>CivicLens AI</h3>
+            <p class="project-lead">Turns a photo of a public infrastructure problem into a municipal report draft.</p>
+            <p>A FastAPI endpoint validates the image and context, sends them to Gemini, and requires structured output that matches a Pydantic response model. Invalid model output, missing credentials, and network failures fall back to labelled demo data.</p>
+            <dl class="decisions">
+              <div><dt>Boundary</dt><dd>The system drafts reports for review. It never claims to submit them to a municipality.</dd></div>
+              <div><dt>Failure mode</dt><dd>The product remains demonstrable when the model is unavailable, without presenting fallback data as live analysis.</dd></div>
+            </dl>
+            <ul class="stack" aria-label="CivicLens AI technologies"><li>Python</li><li>FastAPI</li><li>Pydantic</li><li>Gemini</li><li>Cloud Run</li><li>Pytest</li></ul>
+            <div class="project-actions"><a href="https://github.com/Kea-nhlapo/civiclens-ai" target="_blank" rel="noreferrer">Source code</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="experience band" id="experience" aria-labelledby="experience-title">
+      <div class="container rows-layout">
+        <h2 id="experience-title">Where I have built and learned.</h2>
+        <ol class="timeline">
+          <li class="role"><time>2026 to present</time><div><h3>Backend Software Engineer</h3><p class="role-company">GIMSOI-AI, remote</p></div><p>Building backend systems and cloud integrations, with responsibility across software design and delivery.</p></li>
+          <li class="role"><time>2025 to 2026</time><div><h3>Systems Development Intern</h3><p class="role-company">Dynamic DNA, hybrid</p></div><p>Worked across C#, web systems, cloud concepts, and AI fundamentals in hands-on development projects.</p></li>
+          <li class="role"><time>2024 to 2025</time><div><h3>Systems Development Trainee</h3><p class="role-company">Dynamic DNA, contract</p></div><p>Built a foundation in systems development and IT infrastructure, and earned Microsoft Azure Fundamentals.</p></li>
+          <li class="role"><time>2024</time><div><h3>Web Development Intern</h3><p class="role-company">Oasis Infobyte, remote</p></div><p>Built responsive browser interfaces with HTML, CSS, and JavaScript.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="toolkit section" aria-labelledby="toolkit-title">
+      <div class="container">
+        <h2 id="toolkit-title">Tools grouped by the job they do.</h2>
+        <table class="tool-table">
+          <caption class="visually-hidden">Technical toolkit by area</caption>
+          <thead><tr><th scope="col">Job</th><th scope="col">Tools</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Languages</th><td>Java, Python, TypeScript, JavaScript, C#, SQL</td></tr>
+            <tr class="is-lead"><th scope="row">Backend</th><td>FastAPI, Express, REST, JWT, RBAC, SSE</td></tr>
+            <tr><th scope="row">Data</th><td>PostgreSQL, Prisma, migrations, validation, transactions</td></tr>
+            <tr><th scope="row">Delivery</th><td>Azure, Cloud Run, Docker, GitHub Actions, Git</td></tr>
+            <tr><th scope="row">Quality</th><td>Pytest, Vitest, integration tests, API documentation</td></tr>
+            <tr><th scope="row">Interfaces</th><td>React, HTML, CSS, responsive web, live updates</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="about section" id="about" aria-labelledby="about-title">
+      <div class="container about-grid">
+        <div class="about-copy">
+          <h2 id="about-title">I started coding at 16. Now I care about what happens after the button is clicked.</h2>
+          <p>My first tools were HTML, CSS, and Java on SoloLearn. I am now studying Computer Science and Informatics at UNISA while building APIs, cloud integrations, and data-backed workflows.</p>
+          <p>I like systems with clear boundaries: inputs that are validated, permissions that hold, failures that are visible, and data that can explain what happened.</p>
+        </div>
+        <aside class="credentials" aria-labelledby="credentials-title">
+          <h3 id="credentials-title">BSc Computer Science &amp; Informatics</h3>
+          <p class="credential-school">University of South Africa, 2025 to 2028</p>
+          <ul class="credential-list">
+            <li><time>2024</time><span>Microsoft Certified: Azure Fundamentals</span></li>
+            <li><time>2024</time><span>JavaScript Algorithms and Data Structures</span></li>
+            <li><time>2024</time><span>Responsive Web Design</span></li>
+            <li><time>2020</time><span>SoloLearn: Java, HTML, CSS</span></li>
+          </ul>
+          <a class="text-link" href="https://www.linkedin.com/in/kea-nhlapo-9a4a49261" target="_blank" rel="noreferrer">View credentials on LinkedIn</a>
         </aside>
       </div>
-      <div class="hero-index" aria-hidden="true"><span>01</span><span>SELECTED SYSTEMS</span><span>SCROLL TO INSPECT</span></div>
     </section>
 
-    <section class="work section shell" id="work" aria-labelledby="work-title">
-      <div class="section-heading reveal">
-        <p class="eyebrow">01 / Selected systems</p><h2 id="work-title">Work that shows how I think.</h2>
-        <p>Three hackathon builds, viewed from the backend: where data enters, how decisions are made, and what happens when a dependency fails.</p>
-      </div>
-
-      <article class="project reveal">
-        <div class="project-number" aria-hidden="true">01</div>
-        <div class="project-main">
-          <h3>Mint Uptime Exchange</h3>
-          <p class="project-lead">Turns machinery risk into an approved, scheduled repair before production stops.</p>
-          <p class="project-detail">The backend calculates the financial case, records separate approvals, reserves stock transactionally, matches technicians, and persists a 14-step repair workflow. Server-Sent Events push state changes back to the interface.</p>
-          <div class="decision-grid">
-            <div><span>DATA</span><p>PostgreSQL is the source of truth for machines, alerts, approvals, inventory, work orders, and audit history.</p></div>
-            <div><span>CONTROL</span><p>JWT authentication and database-loaded permissions enforce role boundaries on every request.</p></div>
+    <section class="contact graphite" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner">
+        <h2 id="contact-title">Looking for a backend engineer?</h2>
+        <div class="contact-body">
+          <p>I am open to backend engineering opportunities where I can build reliable APIs, work close to the data, and keep learning from a strong team.</p>
+          <div class="contact-links">
+            <a class="key key--primary" href="https://www.linkedin.com/in/kea-nhlapo-9a4a49261" target="_blank" rel="noreferrer">Start a conversation on LinkedIn</a>
+            <a class="key key--dark" href="https://github.com/Kea-nhlapo" target="_blank" rel="noreferrer">Review my GitHub</a>
           </div>
-          <ul class="stack" aria-label="Mint Uptime Exchange technologies"><li>TypeScript</li><li>Express</li><li>Prisma</li><li>PostgreSQL</li><li>SSE</li><li>Vitest</li></ul>
-          <div class="project-actions"><a href="https://kea-nhlapo.github.io/mint-uptime-guarantee/" target="_blank" rel="noreferrer">Live frontend <span aria-hidden="true">↗</span></a><a href="https://github.com/Kea-nhlapo/mint-uptime-guarantee" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a></div>
-        </div>
-        <div class="project-visual mint-visual" role="img" aria-label="A machine signal enters a risk API, which coordinates approvals, inventory, and a work order">
-          <div class="flow-node flow-source"><span>01</span>Machine signal</div><div class="flow-line"></div><div class="flow-node flow-core"><span>02</span>Risk API</div>
-          <div class="flow-branches"><div><span>APPROVAL</span><strong>OPS + FINANCE</strong></div><div><span>INVENTORY</span><strong>RESERVED</strong></div><div><span>WORK ORDER</span><strong>SCHEDULED</strong></div></div>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <div class="project-number" aria-hidden="true">02</div>
-        <div class="project-main">
-          <h3>WattWise</h3>
-          <p class="project-lead">Electricity monitoring that connects household usage, municipal faults, and technician dispatch.</p>
-          <p class="project-detail">Arduino readings pass through a Python bridge into a FastAPI service and PostgreSQL. The API serves separate workflows for residents, municipal teams, and field technicians, while the frontend can fall back to mock data when hardware is unavailable.</p>
-          <div class="decision-grid">
-            <div><span>PIPELINE</span><p>A small bridge isolates serial hardware input from the web API and forwards readings over HTTP.</p></div>
-            <div><span>ACCESS</span><p>The system includes a USSD-style flow so core reporting does not depend on a smartphone.</p></div>
-          </div>
-          <ul class="stack" aria-label="WattWise technologies"><li>Python</li><li>FastAPI</li><li>PostgreSQL</li><li>Arduino</li><li>React</li><li>TypeScript</li></ul>
-          <div class="project-actions"><a href="https://github.com/wattwiseg13/wattwise" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a></div>
-        </div>
-        <div class="project-visual wattwise-visual" role="img" aria-label="Live electricity reading with an Arduino, Python, FastAPI, and PostgreSQL data pipeline">
-          <div class="meter-readout"><span>LIVE DRAW</span><strong>2.84<small>kW</small></strong><div class="signal-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-          <ol class="pipeline"><li><span>Arduino</span><small>meter reading</small></li><li><span>Python</span><small>serial bridge</small></li><li><span>FastAPI</span><small>validation + routes</small></li><li><span>Postgres</span><small>usage + alerts</small></li></ol>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <div class="project-number" aria-hidden="true">03</div>
-        <div class="project-main">
-          <h3>CivicLens AI</h3>
-          <p class="project-lead">Turns a photo of a public infrastructure problem into a municipal report draft.</p>
-          <p class="project-detail">A FastAPI endpoint validates the image and context, sends them to Gemini, and requires structured output that matches a Pydantic response model. Invalid model output, missing credentials, and network failures fall back to labelled demo data.</p>
-          <div class="decision-grid">
-            <div><span>BOUNDARY</span><p>The system drafts reports for review. It never claims to submit them to a municipality.</p></div>
-            <div><span>FAILURE MODE</span><p>The product remains demonstrable when the model is unavailable, without presenting fallback data as live analysis.</p></div>
-          </div>
-          <ul class="stack" aria-label="CivicLens AI technologies"><li>Python</li><li>FastAPI</li><li>Pydantic</li><li>Gemini</li><li>Cloud Run</li><li>Pytest</li></ul>
-          <div class="project-actions"><a href="https://github.com/Kea-nhlapo/civiclens-ai" target="_blank" rel="noreferrer">Source code <span aria-hidden="true">↗</span></a></div>
-        </div>
-        <div class="project-visual civic-visual" role="img" aria-label="A road damage photo classified as high severity and routed to a roads department">
-          <div class="report-photo"><span class="scan-line" aria-hidden="true"></span><span class="photo-label">IMAGE_024.JPG</span><div class="road" aria-hidden="true"><i></i></div></div>
-          <div class="report-output"><div><span>CLASS</span><strong>ROAD DAMAGE</strong></div><div><span>SEVERITY</span><strong>HIGH</strong></div><div><span>ROUTE</span><strong>ROADS DEPT.</strong></div></div>
-        </div>
-      </article>
-    </section>
-
-    <section class="experience section" id="experience" aria-labelledby="experience-title">
-      <div class="shell">
-        <div class="section-heading section-heading-light reveal"><p class="eyebrow">02 / Experience</p><h2 id="experience-title">Where I have built and learned.</h2></div>
-        <div class="timeline">
-          <article class="role reveal"><p class="role-date">2026 / PRESENT</p><div><h3>Backend Software Engineer</h3><p class="role-company">GIMSOI-AI · Remote</p></div><p>Building backend systems and cloud integrations, with responsibility across software design and delivery.</p></article>
-          <article class="role reveal"><p class="role-date">2025 / 2026</p><div><h3>Systems Development Intern</h3><p class="role-company">Dynamic DNA · Hybrid</p></div><p>Worked across C#, web systems, cloud concepts, and AI fundamentals in hands-on development projects.</p></article>
-          <article class="role reveal"><p class="role-date">2024 / 2025</p><div><h3>Systems Development Trainee</h3><p class="role-company">Dynamic DNA · Contract</p></div><p>Built a foundation in systems development and IT infrastructure, and earned Microsoft Azure Fundamentals.</p></article>
-          <article class="role reveal"><p class="role-date">2024</p><div><h3>Web Development Intern</h3><p class="role-company">Oasis Infobyte · Remote</p></div><p>Built responsive browser interfaces with HTML, CSS, and JavaScript.</p></article>
         </div>
       </div>
-    </section>
-
-    <section class="toolkit section shell" aria-labelledby="toolkit-title">
-      <div class="section-heading reveal"><p class="eyebrow">03 / Technical toolkit</p><h2 id="toolkit-title">Tools grouped by the job they do.</h2></div>
-      <div class="tool-grid reveal">
-        <div><span>01</span><h3>Languages</h3><p>Java, Python, TypeScript, JavaScript, C#, SQL</p></div><div><span>02</span><h3>Backend</h3><p>FastAPI, Express, REST, JWT, RBAC, SSE</p></div>
-        <div><span>03</span><h3>Data</h3><p>PostgreSQL, Prisma, migrations, validation, transactions</p></div><div><span>04</span><h3>Delivery</h3><p>Azure, Cloud Run, Docker, GitHub Actions, Git</p></div>
-        <div><span>05</span><h3>Quality</h3><p>Pytest, Vitest, integration tests, API documentation</p></div><div><span>06</span><h3>Interfaces</h3><p>React, HTML, CSS, responsive web, live updates</p></div>
-      </div>
-    </section>
-
-    <section class="about section shell" id="about" aria-labelledby="about-title">
-      <div class="about-copy reveal">
-        <p class="eyebrow">04 / About</p><h2 id="about-title">I started coding at 16. Now I care about what happens after the button is clicked.</h2>
-        <p>My first tools were HTML, CSS, and Java on SoloLearn. I am now studying Computer Science and Informatics at UNISA while building APIs, cloud integrations, and data-backed workflows.</p>
-        <p>I like systems with clear boundaries: inputs that are validated, permissions that hold, failures that are visible, and data that can explain what happened.</p>
-      </div>
-      <aside class="credentials reveal" aria-labelledby="credentials-title">
-        <div class="credentials-head"><p class="eyebrow">Education + credentials</p><span>VERIFIED</span></div>
-        <h3 id="credentials-title">BSc Computer Science &amp; Informatics</h3><p class="credential-school">University of South Africa · 2025–2028</p>
-        <ul><li><span>2024</span><strong>Microsoft Certified: Azure Fundamentals</strong></li><li><span>2024</span><strong>JavaScript Algorithms and Data Structures</strong></li><li><span>2024</span><strong>Responsive Web Design</strong></li><li><span>2020</span><strong>SoloLearn: Java, HTML, CSS</strong></li></ul>
-        <a href="https://www.linkedin.com/in/kea-nhlapo-9a4a49261" target="_blank" rel="noreferrer">View credentials on LinkedIn <span aria-hidden="true">↗</span></a>
-      </aside>
-    </section>
-
-    <section class="contact section" id="contact" aria-labelledby="contact-title">
-      <div class="shell contact-inner reveal"><p class="eyebrow">05 / Contact</p><h2 id="contact-title">Looking for a backend engineer?</h2><p>I am open to backend engineering opportunities where I can build reliable APIs, work close to the data, and keep learning from a strong team.</p><div class="contact-links"><a href="https://www.linkedin.com/in/kea-nhlapo-9a4a49261" target="_blank" rel="noreferrer">Start a conversation on LinkedIn <span aria-hidden="true">↗</span></a><a href="https://github.com/Kea-nhlapo" target="_blank" rel="noreferrer">Review my GitHub <span aria-hidden="true">↗</span></a></div></div>
     </section>
   </main>
 
-  <footer class="footer"><div class="shell"><p>Kea Nhlapo <span>·</span> Backend Engineer</p><p><span id="year">2026</span> <span>·</span> Built without a framework</p><a href="#top">Back to top ↑</a></div></footer>
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-mark">Kea Nhlapo, backend engineer</p>
+      <p class="footer-meta"><span id="year">2026</span>. Built without a framework.</p>
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
 </body>
 </html>

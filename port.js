@@ -20,119 +20,115 @@ if (menuButton && navLinks) {
 const year = document.querySelector("#year");
 if (year) year.textContent = String(new Date().getFullYear());
 
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reduceMotion) loadMotion();
+startField(document.querySelector(".field"));
 
-async function loadMotion() {
-  try {
-    const { animate, createTimeline, stagger } = await import(
-      "https://cdn.jsdelivr.net/npm/animejs@4.5.0/+esm"
+/*
+ * The hero's ASCII field: raw request noise on the left resolves into
+ * ordered rows on the right, where the profile it produces sits.
+ * One canvas, an 8 by 16 cell, 30 fps, paused off screen, and one
+ * composed still under reduced motion.
+ */
+function startField(canvas) {
+  if (!canvas || !canvas.getContext) return;
+  const ctx = canvas.getContext("2d");
+  const styles = getComputedStyle(document.documentElement);
+  const tints = ["--color-glyph-1", "--color-glyph-2", "--color-glyph-3", "--color-glyph-4", "--color-accent-deep"]
+    .map((name) => styles.getPropertyValue(name).trim());
+  const ramp = " .:-=+*#%@";
+  const cellW = 8;
+  const cellH = 16;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let cols = 0;
+  let rows = 0;
+  let running = false;
+  let visible = true;
+  let last = 0;
+  let pointer = null;
+  const start = performance.now();
+
+  function resize() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 2);
+    const { width, height } = canvas.getBoundingClientRect();
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+    ctx.font = `12px ${styles.getPropertyValue("--font-outlier").trim() || "monospace"}`;
+    ctx.textBaseline = "top";
+    cols = Math.ceil(width / cellW);
+    rows = Math.ceil(height / cellH);
+  }
+
+  function noise(x, y, t) {
+    return (
+      Math.sin(x * 0.21 + t * 1.3) * 0.5 +
+      Math.sin(y * 0.37 - t * 0.9) * 0.3 +
+      Math.sin((x + y) * 0.13 + t * 0.6) * 0.2
     );
-    const heroWords = splitHeroHeading();
-    document.body.classList.add("anime-ready");
-    animateHero(createTimeline, stagger, heroWords);
-    observeProjects(createTimeline, stagger);
-    observeSections(animate);
-    addHoverMotion(animate);
-  } catch (error) {
-    document.body.classList.remove("anime-ready");
-    console.warn("Motion unavailable. The portfolio remains fully usable.", error);
   }
-}
 
-function splitHeroHeading() {
-  const heading = document.querySelector("#hero-title");
-  if (!heading) return [];
-  const label = heading.textContent.trim();
-  heading.setAttribute("aria-label", label);
-  heading.textContent = "";
-
-  label.split(/\s+/).forEach((word, index, words) => {
-    const clip = document.createElement("span");
-    const wordElement = document.createElement("span");
-    clip.className = "word-clip";
-    clip.setAttribute("aria-hidden", "true");
-    wordElement.className = "hero-word";
-    wordElement.textContent = word;
-    clip.appendChild(wordElement);
-    heading.appendChild(clip);
-    if (index < words.length - 1) heading.append(" ");
-  });
-  return heading.querySelectorAll(".hero-word");
-}
-
-function animateHero(createTimeline, stagger, heroWords) {
-  createTimeline({ defaults: { ease: "out(3)" } })
-    .add(heroWords, { opacity: [0, 1], y: ["110%", "0%"], duration: 680, delay: stagger(48) })
-    .add(".hero-intro", { opacity: [0, 1], y: [16, 0], duration: 480 }, "-=360")
-    .add(".hero-actions > *", { opacity: [0, 1], y: [12, 0], duration: 380, delay: stagger(70) }, "-=330")
-    .add(".hero-system", { opacity: [0, 1], x: [24, 0], duration: 560 }, "-=420")
-    .add(".system-list > div", { opacity: [0, 1], x: [12, 0], duration: 320, delay: stagger(55) }, "-=300")
-    .add(".hero-index > span", { opacity: [0, 1], y: [8, 0], duration: 300, delay: stagger(45) }, "-=180");
-}
-
-function observeProjects(createTimeline, stagger) {
-  const projects = document.querySelectorAll(".project");
-  const run = (project) => animateProject(project, createTimeline, stagger);
-  if (!("IntersectionObserver" in window)) return projects.forEach(run);
-
-  const observer = new IntersectionObserver((entries, activeObserver) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      run(entry.target);
-      activeObserver.unobserve(entry.target);
-    });
-  }, { rootMargin: "0px 0px -12%", threshold: 0.12 });
-  projects.forEach((project) => observer.observe(project));
-}
-
-function animateProject(project, createTimeline, stagger) {
-  const content = project.querySelectorAll(
-    ".project-number, .project-main h3, .project-lead, .project-detail, .decision-grid > div, .stack > li, .project-actions > a"
-  );
-  const timeline = createTimeline({ defaults: { ease: "out(3)" } })
-    .add(content, { opacity: [0, 1], y: [18, 0], duration: 430, delay: stagger(34) })
-    .add(project.querySelector(".project-visual"), { opacity: [0, 1], x: [24, 0], duration: 520 }, "-=420");
-
-  if (project.querySelector(".mint-visual")) {
-    timeline
-      .add(project.querySelectorAll(".flow-node"), { opacity: [0, 1], scaleX: [0.76, 1], duration: 380, delay: stagger(130) }, "-=260")
-      .add(project.querySelector(".flow-line"), { opacity: [0, 1], scaleY: [0, 1], duration: 280 }, "-=270")
-      .add(project.querySelectorAll(".flow-branches > div"), { opacity: [0, 1], y: [14, 0], duration: 320, delay: stagger(90) }, "-=120");
+  function draw(time) {
+    const t = (time - start) / 1000;
+    const { width, height } = canvas.getBoundingClientRect();
+    ctx.clearRect(0, 0, width, height);
+    for (let y = 0; y < rows; y += 1) {
+      for (let x = 0; x < cols; x += 1) {
+        const progress = x / cols;
+        // Left: raw, turbulent traffic. Right: settled into ordered rows.
+        const order = Math.min(1, Math.max(0, (progress - 0.25) / 0.5));
+        const raw = (noise(x, y, t) + 1) / 2;
+        const settled = y % 3 === 0 ? 0.55 : 0.08;
+        let value = raw * (1 - order) + settled * order;
+        if (pointer) {
+          const dx = (x * cellW - pointer.x) / 90;
+          const dy = (y * cellH - pointer.y) / 90;
+          value += Math.max(0, 0.45 - (dx * dx + dy * dy) * 0.45);
+        }
+        if (progress > 0.82) value *= 0.35; // keep the densest cells away from the panel
+        const index = Math.min(ramp.length - 1, Math.floor(value * ramp.length));
+        if (index < 1) continue;
+        ctx.fillStyle = tints[Math.min(tints.length - 1, Math.floor(value * tints.length))];
+        ctx.fillText(ramp[index], x * cellW, y * cellH + 2);
+      }
+    }
   }
-  if (project.querySelector(".wattwise-visual")) {
-    timeline
-      .add(project.querySelector(".meter-readout strong"), { opacity: [0, 1], scale: [0.88, 1], duration: 420 }, "-=270")
-      .add(project.querySelectorAll(".signal-bars i"), { scaleY: [0.08, 1], duration: 380, delay: stagger(38) }, "-=260")
-      .add(project.querySelectorAll(".pipeline li"), { opacity: [0, 1], y: [12, 0], duration: 320, delay: stagger(100) }, "-=160");
+
+  function loop(time) {
+    if (!running) return;
+    if (time - last > 33) {
+      draw(time);
+      last = time;
+    }
+    requestAnimationFrame(loop);
   }
-  if (project.querySelector(".civic-visual")) {
-    timeline
-      .add(project.querySelector(".scan-line"), { opacity: [0, 1], y: [0, 125], duration: 900, ease: "inOut(2)" }, "-=320")
-      .add(project.querySelectorAll(".report-output > div"), { opacity: [0, 1], y: [10, 0], duration: 300, delay: stagger(100) }, "-=180");
+
+  function update() {
+    const shouldRun = visible && !reduceMotion.matches && !document.hidden;
+    if (shouldRun && !running) {
+      running = true;
+      requestAnimationFrame(loop);
+    } else if (!shouldRun) {
+      running = false;
+      draw(start + 2400);
+    }
   }
-}
 
-function observeSections(animate) {
-  const elements = document.querySelectorAll(
-    ".section-heading, .role, .tool-grid > div, .about-copy, .credentials, .contact-inner > *"
-  );
-  const run = (element) => animate(element, { opacity: [0, 1], y: [16, 0], duration: 480, ease: "out(3)" });
-  if (!("IntersectionObserver" in window)) return elements.forEach(run);
+  resize();
+  draw(start + 2400);
+  update();
 
-  const observer = new IntersectionObserver((entries, activeObserver) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting || entry.target.closest(".project")) return;
-      run(entry.target);
-      activeObserver.unobserve(entry.target);
-    });
-  }, { rootMargin: "0px 0px -10%", threshold: 0.1 });
-  elements.forEach((element) => observer.observe(element));
-}
+  window.addEventListener("resize", () => { resize(); draw(performance.now()); }, { passive: true });
+  document.addEventListener("visibilitychange", update);
+  reduceMotion.addEventListener?.("change", update);
+  canvas.parentElement.addEventListener("pointermove", (event) => {
+    const box = canvas.getBoundingClientRect();
+    pointer = { x: event.clientX - box.left, y: event.clientY - box.top };
+  }, { passive: true });
+  canvas.parentElement.addEventListener("pointerleave", () => { pointer = null; }, { passive: true });
 
-function addHoverMotion(animate) {
-  document.querySelectorAll(".button, .project-actions a, .nav-external").forEach((element) => {
-    element.addEventListener("pointerenter", () => animate(element, { x: 4, duration: 180, ease: "out(3)" }));
-    element.addEventListener("pointerleave", () => animate(element, { x: 0, duration: 220, ease: "out(3)" }));
-  });
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      update();
+    }).observe(canvas);
+  }
 }
