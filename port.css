@@ -1,7 +1,7 @@
 /* Hallmark · v2.0.0 · redesign: full · theme: cobalt (deal: manual, matched on backend, api, database) · genre: modern-minimal · job: hire · posture: restrained · hero: Stage · nav: edge-aligned, wordmark and four links with one Contact key · footer: colophon block · signature: an ASCII field of raw requests resolving into the backend profile */
 /* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: P, the page argues for backend judgement but still opens on a profile; each case now leads with its own system diagram so the argument is made in the work */
 /* Hallmark · dropped the eyebrows and the hero index strip (54, 66), the arrows glued to links (63), the VERIFIED and ACTIVE status tags, the signal bars and the Anime.js choreography (genre keeps the page composed) */
-/* Hallmark · reworded "2025–2028" and the other date ranges to "2025 to 2028" · 19 names the en dash */
+/* Hallmark · reworded all page copy into the owner's own voice (first person, casual, short), taken from the original site; date ranges as "2025 to 2028" since 19 names the en dash */
 
 :root {
   --color-paper: oklch(98.6% 0.005 250);
